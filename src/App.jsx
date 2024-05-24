@@ -1,18 +1,22 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
-import ReactDOM from "react-dom/client";
-import React from "react";
-import r2wc from "react-to-webcomponent";
 
-function App() {
-  return <div>Hello From React</div>;
+import r2wc from "react-to-webcomponent";
+import PropTypes from 'prop-types';
+
+const HelloApp = ({ name }) => {
+  return <h1>Hello, {name}!</h1>
 }
 
-const WebGreeting = r2wc(App, React, ReactDOM);
+const WebGreeting = r2wc(HelloApp,{
+  props:{name:'string'}
+});
 
 customElements.define("web-greeting", WebGreeting);
 
-export default App;
+export default HelloApp
+
+
+HelloApp.propTypes = {
+  name: PropTypes.string
+}
